@@ -5,6 +5,7 @@ interface Output {
     id: string;
     title: string;
     description: string;
+    thumbnail: string
 }
 
 export default class ListVideos {
@@ -21,7 +22,8 @@ export default class ListVideos {
             return {
                 id: video.id,
                 title: video.title,
-                description: video.description
+                description: video.description,
+                thumbnail: video.thumbnail,
             }
         });
     }
