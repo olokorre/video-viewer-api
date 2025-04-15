@@ -12,4 +12,8 @@ export default class VideoRepositoryMemory implements VideoRepository {
     async save(video: Video): Promise<void> {
         this.videos.push(video);
     }
+
+    async getAll(): Promise<Video[]> {
+        return [...this.videos];
+    }
 }

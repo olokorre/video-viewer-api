@@ -29,5 +29,15 @@ export default class Router {
             }
             res.json({ message: 'Video uploaded successfully!' });
         });
+
+        this.app.get('/videos/list', async (req, res) => {
+            try {
+                const videos = await this.videoController.listVideos();
+                res.json(videos);
+            } catch (error) {
+                console.error('Error listing videos:', error);
+                res.status(500).json({ error: 'Failed to list videos.' });
+            }
+        });
     }
 }
