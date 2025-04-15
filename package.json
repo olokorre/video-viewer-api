@@ -1,5 +1,7 @@
 {
   "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.1",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.8.3"
   },
@@ -7,5 +9,9 @@
     "clean": "rm -rf dist/*/",
     "main": "tsc && node ./dist/main",
     "dev": "ts-node-dev --respawn --transpile-only -- source/main.ts"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
   }
 }
