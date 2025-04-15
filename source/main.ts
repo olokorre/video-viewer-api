@@ -5,7 +5,7 @@ import MemoryRepositoryFactory from './infra/repository/MemoryRepositoryFactory'
 const app = express();
 
 app.use(cors());
-app.use(express.json({ limit: '50mb' }));
+app.use(express.json({ limit: '900mb' }));
 
 const repositoryFactory = new MemoryRepositoryFactory();
 const router = new Router(app, repositoryFactory);
