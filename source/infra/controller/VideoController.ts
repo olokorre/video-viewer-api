@@ -1,6 +1,7 @@
 import ListVideos from "../../app/ListVideos";
 import UploadVideo from "../../app/UploadVideo";
-import RepositoryFactory from "../../domain/repository/repositoryFactory";
+import ViewVideo from "../../app/ViewVideo";
+import RepositoryFactory from "../../domain/repository/RepositoryFactory";
 
 export default class VideoController {
     private repositoryFactory: RepositoryFactory;
@@ -17,5 +18,10 @@ export default class VideoController {
     async listVideos() {
         const listVideos = new ListVideos(this.repositoryFactory);
         return await listVideos.execute();
+    }
+
+    async viewVideo(id: string) {
+        const viewVideo = new ViewVideo(this.repositoryFactory);
+        return await viewVideo.execute(id);
     }
 }

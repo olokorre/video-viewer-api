@@ -1,5 +1,5 @@
 import { Express } from 'express';
-import RepositoryFactory from '../domain/repository/repositoryFactory';
+import RepositoryFactory from '../domain/repository/RepositoryFactory';
 import VideoController from './controller/VideoController';
 
 export default class Router {
@@ -37,6 +37,21 @@ export default class Router {
             } catch (error) {
                 console.error('Error listing videos:', error);
                 res.status(500).json({ error: 'Failed to list videos.' });
+            }
+        });
+
+        this.app.get('/videos/:id', async (req, res) => {
+            const { id } = req.params;
+            if (!id) {
+                res.status(400).json({ error: 'Video ID is required.' });
+                return;
+            }
+            try {
+                const video = await this.videoController.viewVideo(id);
+                res.json(video);
+            } catch (error) {
+                console.error('Error viewing video:', error);
+                res.status(500).json({ error: 'Failed to view video.' });
             }
         });
     }

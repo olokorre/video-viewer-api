@@ -16,4 +16,12 @@ export default class VideoRepositoryMemory implements VideoRepository {
     async getAll(): Promise<Video[]> {
         return [...this.videos];
     }
+
+    async findById(id: string): Promise<Video> {
+        const video = this.videos.find(video => video.id === id);
+        if (!video) {
+            throw new Error("Video not found");
+        }
+        return video;
+    }
 }
