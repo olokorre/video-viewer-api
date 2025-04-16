@@ -1,6 +1,8 @@
 import { Express } from 'express';
+import multer from "multer";
 import RepositoryFactory from '../domain/repository/RepositoryFactory';
 import VideoController from './controller/VideoController';
+import { v4 } from 'uuid';
 
 export default class Router {
     private videoController: VideoController;
@@ -10,17 +12,33 @@ export default class Router {
     }
 
     init(): void {
+        const upload = multer({
+            storage: multer.diskStorage({
+                destination: "uploads/",
+                filename: (req, file, cb) => {
+                    const [, extention] = file.mimetype.split('/');
+                    return cb(null, v4() + '.' + extention);
+                },
+            }),
+            limits: { fileSize: 1024 * 1024 * 1024 }, // Limite de 1GB
+        });
+
         this.app.get('/', (req, res) => {
             res.json({ message: 'Hello World!' });
         });
 
-        this.app.post('/videos/upload', async (req, res) => {
-            const { title, description, content } = req.body;
-            if (!title || !description || !content) {
+        this.app.post('/videos/upload', upload.single("video"), async (req, res) => {
+            const { title, description } = req.body;
+            if (!title || !description) {
                 res.status(400).json({ error: 'Title, description, and content are required.' });
                 return;
             }
             try {
+                const content = req.file?.path;
+                if (!content) {
+                    res.status(400).json({ error: 'Video file is required.' });
+                    return;
+                }
                 await this.videoController.uploadVideo(title, description, content);
             } catch (error) {
                 console.error('Error uploading video:', error);

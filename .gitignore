@@ -1,2 +1,10 @@
 node_modules/
 dist/
+uploads/*.mov
+uploads/*.mp4
+uploads/*.m4a
+uploads/*.3gp
+uploads/*.3g2
+uploads/*.mj2
+uploads/*.ts
+videos/*/*
