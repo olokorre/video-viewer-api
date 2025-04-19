@@ -14,7 +14,7 @@ export async function generateThumbnailFromBase64(tempVideoPath: string): Promis
         await new Promise<void>((resolve, reject) => {
             ffmpeg(tempVideoPath)
                 .screenshots({
-                    timestamps: ['00:00:25'],
+                    timestamps: ['00:00:01'],
                     filename: path.basename(tempImagePath),
                     folder: path.dirname(tempImagePath),
                     size: '320x240',

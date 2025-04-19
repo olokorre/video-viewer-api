@@ -8,3 +8,8 @@ uploads/*.3g2
 uploads/*.mj2
 uploads/*.ts
 videos/*/*
+database.db
+uploads/thumbnails/*.png
+uploads/thumbnails/*.jpg
+uploads/thumbnails/*.jpeg
+uploads/thumbnails/*.webp

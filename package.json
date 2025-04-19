@@ -8,9 +8,9 @@
     "typescript": "^5.8.3"
   },
   "scripts": {
-    "clean": "rm -rf dist/*/",
     "main": "tsc && node ./dist/main",
-    "dev": "ts-node-dev --respawn --transpile-only -- source/main.ts"
+    "dev": "ts-node-dev --respawn --transpile-only -- source/main.ts",
+    "build": "rm -rf dist/*/ && tsc"
   },
   "dependencies": {
     "cors": "^2.8.5",
